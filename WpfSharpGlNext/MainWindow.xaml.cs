@@ -252,36 +252,7 @@ namespace WpfSharpGlNext
                 gp.listflag = false; 
                 string filename = dlg.FileName;
                 FilePathTextBox.Text = filename;
-                using (StreamReader sr = File.OpenText(filename))
-                {
-                    gp.list.Clear();
-                    var context = sr.ReadToEnd();
-                    foreach (string item in context.Split('\n'))
-                    {
-                        var sub_item = item.Split('\t');
-                        var secretX = sub_item[0];
-                        var secretY = sub_item[1];
-                        var secretZ = sub_item[2];
-                        gp.list.Add(
-                            new myPoint3((float)Convert.ToDouble(sub_item[0]), (float)Convert.ToDouble(sub_item[1]), (float)Convert.ToDouble(sub_item[2]))
-                            );
-                      //  MessageBox.Show(list.Count().ToString());
-                       // DrawMyPointsArray();
-                       
-                        gp.listflag = true;
-                    }
-                    if (gp.list.Max(x => x.fieldX) >= gp.list.Max(x => x.fieldY))
-                    {
-                        gp.mainProportion = gp.list.Max(x => x.fieldX) + 10;
-                    }
-                    else if (gp.list.Max(x => x.fieldY >= x.fieldZ))
-                    {
-                        gp.mainProportion = gp.list.Max(x => x.fieldY) + 10;
-                    }
-                    else
-                    {
-                        gp.mainProportion = gp.list.Max(x => x.fieldZ) + 10;
-                    }
+                gp.Parse(filename);
                     xPositionSlider.Maximum = gp.list.Max(x => x.fieldX);
                     xPositionSlider.Minimum = gp.list.Min(x => x.fieldX);
                     xPositionSlider.Value = 0;
@@ -294,7 +265,7 @@ namespace WpfSharpGlNext
                     zPositionSlider.Maximum = gp.list.Max(x => x.fieldZ);
                     zPositionSlider.Minimum = gp.list.Min(x => x.fieldZ);
                     zPositionSlider.Value = 0;
-                }
+                
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using SharpGL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -251,6 +252,43 @@ namespace WpfSharpGlNext.BL.Diagrammers
         public void SetZoom()
         {
             throw new NotImplementedException();
+        }
+
+
+        public void Parse(string patch)
+        {
+            using (StreamReader sr = File.OpenText(patch))
+            {
+                list.Clear();
+                var context = sr.ReadToEnd();
+                foreach (string item in context.Split('\n'))
+                {
+                    var sub_item = item.Split('\t');
+                    var secretX = sub_item[0];
+                    var secretY = sub_item[1];
+                    var secretZ = sub_item[2];
+                    list.Add(
+                        new myPoint3((float)Convert.ToDouble(sub_item[0]), (float)Convert.ToDouble(sub_item[1]), (float)Convert.ToDouble(sub_item[2]))
+                        );
+                    //  MessageBox.Show(list.Count().ToString());
+                    // DrawMyPointsArray();
+
+                    listflag = true;
+                }
+                if (list.Max(x => x.fieldX) >= list.Max(x => x.fieldY))
+                {
+                    mainProportion = list.Max(x => x.fieldX) + 10;
+                }
+                else if (list.Max(x => x.fieldY >= x.fieldZ))
+                {
+                    mainProportion = list.Max(x => x.fieldY) + 10;
+                }
+                else
+                {
+                    mainProportion = list.Max(x => x.fieldZ) + 10;
+                }
+              
+            }
         }
     }
 }

@@ -13,5 +13,6 @@ namespace WpfSharpGlNext.BL
         void SetCamera();
         void SetRotate();
         void SetZoom();
+        void Parse(string patch);
     }
 }
