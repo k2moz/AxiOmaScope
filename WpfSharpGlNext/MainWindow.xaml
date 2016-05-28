@@ -18,11 +18,11 @@
         <Button Content="X-" Name="RotateXButtonMinus" HorizontalAlignment="Left" Margin="28,29,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Background="#FFFF0303" Click="RotateXButtonMinus_Click" IsTabStop="False"/>
         <Button Content="Y+" Name="RotateYButtonPlus" HorizontalAlignment="Left" Margin="740,71,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Background="Lime" Click="RotateYButtonPlus_Click" IsTabStop="False"/>
         <Button Content="Y-" Name="RotateYButtonMinus" HorizontalAlignment="Left" Margin="28,71,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Background="Lime" Click="RotateYButtonMinus_Click" IsTabStop="False"/>
-        <Button Content="Z+" Name="RotateZButtonPlus" HorizontalAlignment="Left" Margin="740,110,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Background="Blue" Click="RotateZButtonPlus_Click" IsTabStop="False"/>
-        <Button Content="Z-" Name="RotateZButtonMinus" HorizontalAlignment="Left" Margin="28,110,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Background="Blue" Click="RotateZButtonMinus_Click" IsTabStop="False"/>
+        <Button Content="Z+" Name="RotateZButtonPlus" HorizontalAlignment="Left" Margin="740,110,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Background="Blue" Click="RotateZButtonPlus_Click" IsTabStop="False" IsEnabled="False"/>
+        <Button Content="Z-" Name="RotateZButtonMinus" HorizontalAlignment="Left" Margin="28,110,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Background="Blue" Click="RotateZButtonMinus_Click" IsTabStop="False" IsEnabled="False"/>
         <Slider Name="xPositionSlider" HorizontalAlignment="Left" Margin="740,172,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" Width="311" Height="20" IsTabStop="False" ValueChanged="xPositionSlider_ValueChanged"/>
         <Slider Name="yPositionSlider" HorizontalAlignment="Left" Margin="740,224,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" Width="311" Height="20" IsTabStop="False" ValueChanged="yPositionSlider_ValueChanged"/>
-        <Slider Name="zPositionSlider" HorizontalAlignment="Left" Margin="740,272,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" Width="311" Height="20" IsTabStop="False" ValueChanged="zPositionSlider_ValueChanged"/>
+        <Slider Name="zPositionSlider" HorizontalAlignment="Left" Margin="740,272,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" Width="311" Height="20" IsTabStop="False" ValueChanged="zPositionSlider_ValueChanged" IsEnabled="False"/>
         <Label Content="X Position" HorizontalAlignment="Left" Margin="740,146,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="75"/>
         <Label Content="Y Position" HorizontalAlignment="Left" Margin="741,198,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="74"/>
         <Label Content="Z Position" HorizontalAlignment="Left" Margin="741,246,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="64"/>

@@ -62,23 +62,23 @@ namespace WpfSharpGlNext
         private void OpenGlControl1_Resized(object sender, SharpGL.SceneGraph.OpenGLEventArgs args)
         {
 
-            ////  получаем ссылку на окно OpenGL 
-            //OpenGL gl = OpenGlControl1.OpenGL;
+            //  получаем ссылку на окно OpenGL 
+            OpenGL gl = OpenGlControl1.OpenGL;
 
-            ////  Задаем матрицу вида 
-            //gl.MatrixMode(OpenGL.GL_PROJECTION);
+            //  Задаем матрицу вида 
+            gl.MatrixMode(OpenGL.GL_PROJECTION);
 
-            ////  загружаем нулевую матрицу сцены
-            //gl.LoadIdentity();
+            //  загружаем нулевую матрицу сцены
+            gl.LoadIdentity();
 
-            ////  подгоняем окно просмотра под размеры окна OpenGL в форме  gp.mainProportion*3
-            //gl.Perspective(30f, (double)Width / (double)Height, 0.01, 100.0);
+            //  подгоняем окно просмотра под размеры окна OpenGL в форме  gp.mainProportion*3
+            gl.Perspective(50f, (double)Width / (double)Height, 10.00, 100.0);
 
-            ////  Задаем координаты камеры куда она будет смотреть
-            //gl.LookAt(0, gp.mainProportion / 2, 0, 0, 0, 0, 0, 0, gp.mainProportion);//Глаз, куда смотрим, где вверх
+            //  Задаем координаты камеры куда она будет смотреть
+            gl.LookAt(-30, gp.mainProportion / 2, 0, -30, 0, 0, 0, 0, gp.mainProportion);//Глаз, куда смотрим, где вверх
 
-            ////  задаем матрицу вида мдели 
-            //gl.MatrixMode(OpenGL.GL_MODELVIEW);
+            //  задаем матрицу вида мдели 
+            gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
         private void OpenGlControl1_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -97,12 +97,12 @@ namespace WpfSharpGlNext
         {
            
             //if e.LeftButton;
-            if (e.LeftButton.ToString() == "Pressed")
-            {
-                var new_point = this.OpenGlControl1.PointFromScreen(new Point(e.GetPosition(this.OpenGlControl1).X,e.GetPosition(this.OpenGlControl1).Y));
-                gp.eyeX = (float)(new_point.X/Width);
-                gp.eyeZ = (float)(new_point.Y/Height);
-            }
+            //if (e.LeftButton.ToString() == "Pressed")
+            //{
+            //    var new_point = this.OpenGlControl1.PointFromScreen(new Point(e.GetPosition(this.OpenGlControl1).X,e.GetPosition(this.OpenGlControl1).Y));
+            //    gp.eyeX = (float)(new_point.X/Width);
+            //    gp.eyeZ = (float)(new_point.Y/Height);
+            //}
             
         }
 
@@ -259,8 +259,8 @@ namespace WpfSharpGlNext
 
                     yPositionSlider.Maximum = gp.list.Max(x => x.fieldY);
                     yPositionSlider.Minimum = gp.list.Min(x => x.fieldY);
-                    yPositionSlider.Value = yPositionSlider.Maximum/2;
-                    gp.eyeY = (float)yPositionSlider.Maximum/2;
+                    yPositionSlider.Value = 0;//yPositionSlider.Maximum/2
+                    gp.eyeY = 0;//(float)yPositionSlider.Maximum/2
 
                     zPositionSlider.Maximum = gp.list.Max(x => x.fieldZ);
                     zPositionSlider.Minimum = gp.list.Min(x => x.fieldZ);

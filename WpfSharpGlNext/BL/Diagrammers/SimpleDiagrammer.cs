@@ -88,7 +88,7 @@ namespace WpfSharpGlNext.BL.Diagrammers
             gl.Rotate(xRotate, yRotate, zRotate);
 
             // gl.Perspective(1f, (double)Width / (double)Height, 1, mainProportion);
-           // gl.LookAt(eyeX, eyeY, eyeZ, eyeX, eyeY - 10, eyeZ, eyeX, eyeY, mainProportion);
+            gl.LookAt(eyeX, eyeY, eyeZ, eyeX, eyeY - 10, eyeZ, eyeX, eyeY, mainProportion);
             //gl.Rotate(angle, xRotate, yRotate, zRotate);
 
 
@@ -208,44 +208,41 @@ namespace WpfSharpGlNext.BL.Diagrammers
             }
             gl.End();
 
-            /*SecondLine*/
-            gl.Begin(OpenGL.GL_LINE_STRIP);
+            ///*SecondLine*/
+            //gl.Begin(OpenGL.GL_LINE_STRIP);
 
-            gl.Color(0.5f, 0.5f, 0.5f); //задает цвет 
-            foreach (var item in list)
-            {
-                gl.Vertex(item.fieldX + 1, item.fieldY - 1, item.fieldZ + 0.2);
-            }
-            gl.End();
+            //gl.Color(0.5f, 0.5f, 0.5f); //задает цвет 
+            //foreach (var item in list)
+            //{
+            //    gl.Vertex(item.fieldX + 1, item.fieldY - 1, item.fieldZ + 0.2);
+            //}
+            //gl.End();
 
-            /*Delta*/
+            ///*Delta*/
+            //foreach (var item in list)
+            //{
+            //    gl.Begin(OpenGL.GL_LINE_STRIP);
+            //    gl.Color(1.0f, 0.5f, 0.5f);
+            //    gl.Vertex(item.fieldX, item.fieldY, item.fieldZ);//point from
+            //    gl.Vertex(item.fieldX + 1, item.fieldY - 1, item.fieldZ + 0.2);//point to
+            //    gl.End();
+            //    /**/
+            //    //gl.DrawText((int)item.fieldX, (int)item.fieldY, 1.0f, 0.2f, 0.2f, "Arial", 12, (item.fieldX - item.fieldX + 1).ToString());
 
+            //}
 
+            ///*1 Flag*/
+            //if (flag1)
+            //{
+            //    gl.Begin(OpenGL.GL_LINE_STRIP);
 
-            foreach (var item in list)
-            {
-                gl.Begin(OpenGL.GL_LINE_STRIP);
-                gl.Color(1.0f, 0.5f, 0.5f);
-                gl.Vertex(item.fieldX, item.fieldY, item.fieldZ);//point from
-                gl.Vertex(item.fieldX + 1, item.fieldY - 1, item.fieldZ + 0.2);//point to
-                gl.End();
-                /**/
-                //gl.DrawText((int)item.fieldX, (int)item.fieldY, 1.0f, 0.2f, 0.2f, "Arial", 12, (item.fieldX - item.fieldX + 1).ToString());
+            //    gl.Color(0.0f, 1.0f, 0.0f); //задает цвет 
 
-            }
+            //    gl.Vertex(flag1Point.X / 100, flag1Point.Y / 100, mainProportion);
+            //    gl.Vertex(flag1Point.X / 100, flag1Point.Y / 100, -mainProportion);
 
-            /*1 Flag*/
-            if (flag1)
-            {
-                gl.Begin(OpenGL.GL_LINE_STRIP);
-
-                gl.Color(0.0f, 1.0f, 0.0f); //задает цвет 
-
-                gl.Vertex(flag1Point.X / 100, flag1Point.Y / 100, mainProportion);
-                gl.Vertex(flag1Point.X / 100, flag1Point.Y / 100, -mainProportion);
-
-                gl.End();
-            }
+            //    gl.End();
+            //}
 
 
            
