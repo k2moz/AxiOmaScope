@@ -61,24 +61,24 @@ namespace WpfSharpGlNext
 
         private void OpenGlControl1_Resized(object sender, SharpGL.SceneGraph.OpenGLEventArgs args)
         {
-          
-            //  получаем ссылку на окно OpenGL 
-            OpenGL gl = OpenGlControl1.OpenGL;
-          
-            //  Задаем матрицу вида 
-            gl.MatrixMode(OpenGL.GL_PROJECTION);
 
-            //  загружаем нулевую матрицу сцены
-            gl.LoadIdentity();
+            ////  получаем ссылку на окно OpenGL 
+            //OpenGL gl = OpenGlControl1.OpenGL;
 
-            //  подгоняем окно просмотра под размеры окна OpenGL в форме  gp.mainProportion*3
-            gl.Perspective(30f, (double)Width / (double)Height, 0.01, 100.0);
+            ////  Задаем матрицу вида 
+            //gl.MatrixMode(OpenGL.GL_PROJECTION);
 
-            //  Задаем координаты камеры куда она будет смотреть
-            gl.LookAt(0,gp.mainProportion / 2, 0, 0, 0, 0, 0, 0, gp.mainProportion);//Глаз, куда смотрим, где вверх
+            ////  загружаем нулевую матрицу сцены
+            //gl.LoadIdentity();
 
-            //  задаем матрицу вида мдели 
-            gl.MatrixMode(OpenGL.GL_MODELVIEW);
+            ////  подгоняем окно просмотра под размеры окна OpenGL в форме  gp.mainProportion*3
+            //gl.Perspective(30f, (double)Width / (double)Height, 0.01, 100.0);
+
+            ////  Задаем координаты камеры куда она будет смотреть
+            //gl.LookAt(0, gp.mainProportion / 2, 0, 0, 0, 0, 0, 0, gp.mainProportion);//Глаз, куда смотрим, где вверх
+
+            ////  задаем матрицу вида мдели 
+            //gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
         private void OpenGlControl1_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -265,7 +265,6 @@ namespace WpfSharpGlNext
                     zPositionSlider.Maximum = gp.list.Max(x => x.fieldZ);
                     zPositionSlider.Minimum = gp.list.Min(x => x.fieldZ);
                     zPositionSlider.Value = 0;
-                
             }
         }
 
