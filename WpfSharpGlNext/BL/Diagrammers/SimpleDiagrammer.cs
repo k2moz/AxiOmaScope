@@ -1,4 +1,5 @@
 ﻿using SharpGL;
+using SharpGL.SceneGraph;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -87,7 +88,7 @@ namespace WpfSharpGlNext.BL.Diagrammers
             gl.Rotate(xRotate, yRotate, zRotate);
 
             // gl.Perspective(1f, (double)Width / (double)Height, 1, mainProportion);
-            gl.LookAt(eyeX, eyeY, eyeZ, eyeX, eyeY - 10, eyeZ, eyeX, eyeY, mainProportion);
+           // gl.LookAt(eyeX, eyeY, eyeZ, eyeX, eyeY - 10, eyeZ, eyeX, eyeY, mainProportion);
             //gl.Rotate(angle, xRotate, yRotate, zRotate);
 
 
@@ -97,9 +98,20 @@ namespace WpfSharpGlNext.BL.Diagrammers
             {
                 gl.Color(1.0f, 0.0f, 0.0f); //задает цвет 
                 gl.Vertex(i, 0, 0);
-
             }
             gl.End();
+            
+            //for (float i = -mainProportion; i < mainProportion; i = i + 0.1f)
+            //{
+            //    //  загружает нулевую матрицу мировых координат
+            //    gl.LoadIdentity();
+            //   // gl.RasterPos(i,i);
+            //    gl.DrawText((int)i, 0, 1.0f, 0, 0, "Tahoma", 16.0f, "Hellow WORLD");
+            //    gl.Flush();
+
+            //}
+            
+            
             //X-Y
             gl.Begin(OpenGL.GL_LINES);
             for (float i = -mainProportion; i < mainProportion; i = i + mainProportion / 100)
@@ -218,7 +230,7 @@ namespace WpfSharpGlNext.BL.Diagrammers
                 gl.Vertex(item.fieldX + 1, item.fieldY - 1, item.fieldZ + 0.2);//point to
                 gl.End();
                 /**/
-                gl.DrawText((int)item.fieldX, (int)item.fieldY, 1.0f, 0.2f, 0.2f, "Arial", 12, (item.fieldX - item.fieldX + 1).ToString());
+                //gl.DrawText((int)item.fieldX, (int)item.fieldY, 1.0f, 0.2f, 0.2f, "Arial", 12, (item.fieldX - item.fieldX + 1).ToString());
 
             }
 
