@@ -60,7 +60,7 @@ namespace WpfSharpGlNext.BL.Diagrammers
 
             
         public List<myPoint3> list = new List<myPoint3>();//Коллекция точек
-
+        public List<myPoint3> list2 = new List<myPoint3>();//Коллекция точек2
         OpenGL gl;
 
         public SimpleDiagrammer()
@@ -160,34 +160,35 @@ namespace WpfSharpGlNext.BL.Diagrammers
             }
             gl.End();
             #endregion
-            #region//Asix Z
-            gl.Begin(OpenGL.GL_LINE_STRIP);
-            for (float i = -mainProportion; i < mainProportion; i = i + 0.1f)
-            {
-                gl.Color(0.0f, 0.0f, 1.0f); //задает цвет 
-                gl.Vertex(0, 0, i);
 
-            }
-            gl.End();
-            //Z-Y
-            gl.Begin(OpenGL.GL_LINES);
-            for (float i = -mainProportion; i < mainProportion; i = i + mainProportion / 100)
-            {
-                gl.Color(0.0f, 0.0f, 1.0f); //задает цвет 
-                gl.Vertex(0, 0.1f, i);
-                gl.Vertex(0, -0.1f, i);
-            }
-            gl.End();
-            //Z-X
-            gl.Begin(OpenGL.GL_LINES);
-            for (float i = -mainProportion; i < mainProportion; i = i + mainProportion / 100)
-            {
-                gl.Color(0.0f, 0.0f, 1.0f); //задает цвет 
-                gl.Vertex(0.1f, 0, i);
-                gl.Vertex(-0.1f, 0, i);
-            }
-            gl.End();
-            #endregion
+            //#region//Asix Z
+            //gl.Begin(OpenGL.GL_LINE_STRIP);
+            //for (float i = -mainProportion; i < mainProportion; i = i + 0.1f)
+            //{
+            //    gl.Color(0.0f, 0.0f, 1.0f); //задает цвет 
+            //    gl.Vertex(0, 0, i);
+
+            //}
+            //gl.End();
+            ////Z-Y
+            //gl.Begin(OpenGL.GL_LINES);
+            //for (float i = -mainProportion; i < mainProportion; i = i + mainProportion / 100)
+            //{
+            //    gl.Color(0.0f, 0.0f, 1.0f); //задает цвет 
+            //    gl.Vertex(0, 0.1f, i);
+            //    gl.Vertex(0, -0.1f, i);
+            //}
+            //gl.End();
+            ////Z-X
+            //gl.Begin(OpenGL.GL_LINES);
+            //for (float i = -mainProportion; i < mainProportion; i = i + mainProportion / 100)
+            //{
+            //    gl.Color(0.0f, 0.0f, 1.0f); //задает цвет 
+            //    gl.Vertex(0.1f, 0, i);
+            //    gl.Vertex(-0.1f, 0, i);
+            //}
+            //gl.End();
+            //#endregion
 
 
 

@@ -72,10 +72,13 @@ namespace WpfSharpGlNext
             gl.LoadIdentity();
 
             //  подгоняем окно просмотра под размеры окна OpenGL в форме  gp.mainProportion*3
-            gl.Perspective(50f, (double)Width / (double)Height, 10.00, 100.0);
+            gl.Perspective(50f, (double)Width / (double)Height, 1.0, 300.0);
 
             //  Задаем координаты камеры куда она будет смотреть
-            gl.LookAt(-30, gp.mainProportion / 2, 0, -30, 0, 0, 0, 0, gp.mainProportion);//Глаз, куда смотрим, где вверх
+            gl.LookAt(-gp.mainProportion / 2 + 10, gp.mainProportion/2, 0,
+                      -gp.mainProportion / 2 + 10, 0, 0,
+                      -gp.mainProportion / 2 +10, gp.mainProportion / 2, gp.mainProportion);
+            //Глаз, куда смотрим, где вверх
 
             //  задаем матрицу вида мдели 
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
