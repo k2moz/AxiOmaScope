@@ -42,3 +42,5 @@ D:\Шара\VS\GIT\qaGraph\WpfSharpGlNext\bin\Debug\sharpgl.wpf.pdb
 D:\Шара\VS\GIT\qaGraph\WpfSharpGlNext\bin\Debug\sharpgl.wpf.xml
 D:\Шара\VS\GIT\qaGraph\WpfSharpGlNext\obj\Debug\WpfSharpGlNext.csprojResolveAssemblyReference.cache
 D:\Шара\VS\GIT\qaGraph\WpfSharpGlNext\obj\Debug\WpfSharpGlNext.exe
+D:\Шара\VS\GIT\qaGraph\WpfSharpGlNext\bin\Debug\PcNcCommon.dll
+D:\Шара\VS\GIT\qaGraph\WpfSharpGlNext\bin\Debug\PcNcCommon.pdb

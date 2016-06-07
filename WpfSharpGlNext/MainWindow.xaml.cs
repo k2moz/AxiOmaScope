@@ -44,13 +44,12 @@ namespace WpfSharpGlNext
         {
            
            //Control.MousePosition
-            
-            var gl = this.OpenGlControl1.OpenGL;
+
+            var gl = gp.gl;
            
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);//Цвет
             gl.LoadIdentity();//Система коардинат
 
-            
             gp.DrawAsix();
            // gp.PointsTriangleGenerateMethod();
             if (gp.listflag)
@@ -72,12 +71,12 @@ namespace WpfSharpGlNext
             gl.LoadIdentity();
 
             //  подгоняем окно просмотра под размеры окна OpenGL в форме  gp.mainProportion*3
-            gl.Perspective(50f, (double)Width / (double)Height, 1.0, 300.0);
+          //  gl.Perspective(10f, (double)Width / (double)Height, 1.0, 300.0);
 
             //  Задаем координаты камеры куда она будет смотреть
-            gl.LookAt(-gp.mainProportion / 2 + 10, gp.mainProportion/2, 0,
-                      -gp.mainProportion / 2 + 10, 0, 0,
-                      -gp.mainProportion / 2 +10, gp.mainProportion / 2, gp.mainProportion);
+            //gl.LookAt(0, 0, gp.mainProportion,
+            //          0 , 0, 0,
+            //          0, gp.mainProportion, gp.mainProportion);
             //Глаз, куда смотрим, где вверх
 
             //  задаем матрицу вида мдели 
@@ -263,7 +262,7 @@ namespace WpfSharpGlNext
                     yPositionSlider.Maximum = gp.list.Max(x => x.fieldY);
                     yPositionSlider.Minimum = gp.list.Min(x => x.fieldY);
                     yPositionSlider.Value = 0;//yPositionSlider.Maximum/2
-                    gp.eyeY = 0;//(float)yPositionSlider.Maximum/2
+                   // gp.eyeY = 0;//(float)yPositionSlider.Maximum/2
 
                     zPositionSlider.Maximum = gp.list.Max(x => x.fieldZ);
                     zPositionSlider.Minimum = gp.list.Min(x => x.fieldZ);
