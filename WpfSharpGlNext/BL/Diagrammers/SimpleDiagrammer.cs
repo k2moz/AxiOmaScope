@@ -90,7 +90,7 @@ namespace WpfSharpGlNext.BL.Diagrammers
            // gl.Rotate(xRotate, yRotate, zRotate);
 
             // gl.Perspective(1f, (double)Width / (double)Height, 1, mainProportion);
-            gl.Perspective(10f, 1.0, 0.1, 200.0);
+            gl.Perspective(20f, 1.0, 0.1, 200.0);
             gl.LookAt(eyeX, eyeY, mainProportion,
                          eyeX, eyeY, 0,
                          eyeX, eyeY, 0);
@@ -236,16 +236,31 @@ namespace WpfSharpGlNext.BL.Diagrammers
             }
             gl.End();
 
-            /*Delta*/
+            gl.Begin(OpenGL.GL_LINE_STRIP);
+            gl.Color(0.0f, 1.0f, 0.0f);
+
+            //Delta
             for (int i = 0; i < list.Count; i++)
             {
-                gl.Begin(OpenGL.GL_LINE_STRIP);
-                gl.Color(0.0f, 1.0f, 0.0f);
-                gl.Vertex(list[i].fieldX, list[i].fieldY, list[i].fieldZ);//point from
-                gl.Vertex(list2[i].fieldX, list2[i].fieldY, list2[i].fieldZ);//point to
-                gl.End();
+                var r0 = Math.Sqrt(list2[i].fieldX * list2[i].fieldX + list2[i].fieldY * list2[i].fieldY);
+                var r1 = Math.Sqrt(list[i].fieldX * list[i].fieldX + list[i].fieldY * list[i].fieldY);
+                var deltar = r1 - r0;
+
+                var r = r0 + deltar * 400;
+                var sina = list2[i].fieldY / r0;
+                var cosa = list2[i].fieldX / r0;
+
+                var x = r * cosa;
+                var y = r * sina;
+
+                //var deltax = list2[i].fieldX - list[i].fieldX;
+                //var deltay = list2[i].fieldY - list[i].fieldY;
+                //gl.Vertex(list[i].fieldX, list[i].fieldY, list[i].fieldZ);//point from
+                gl.Vertex(x, y, 0);//point to   
             }
-         
+
+            gl.End();
+
 
             ///*1 Flag*/
             //if (flag1)
@@ -279,10 +294,12 @@ namespace WpfSharpGlNext.BL.Diagrammers
             throw new NotImplementedException();
         }
 
+        public List<myPoint3> cmdSignal = new List<myPoint3>();
+        public List<myPoint3> realSignal = new List<myPoint3>();
 
         public void Parse(string patch)
         {
-
+            #region 1
             NcMeasure ncMeasure = new NcMeasure();
             if (ncMeasure == null)
                 return;
@@ -293,6 +310,9 @@ namespace WpfSharpGlNext.BL.Diagrammers
             AbstractMeasure measure = new AbstractMeasure();
             measure.LoadData(ncMeasure.PointsList);
             list.Clear();
+
+            cmdSignal.Clear();
+            realSignal.Clear();
 
             for (int i = 0; i < ncMeasure.PointsList.Count()/* - (ncMeasure.PointsList.Count()-1000);*/; i++)
             {
@@ -324,39 +344,20 @@ namespace WpfSharpGlNext.BL.Diagrammers
                         j2++;
                         continue;
                     }
-                    currentCmdPoint.fieldX = (float)(ncMeasure.PointsList[j2].ax_data.axDrPos * ncMeasure.PointsList[j2].ax_data.pos_discr);
+                    currentCmdPoint.fieldX = (float)(ncMeasure.PointsList[j2].ax_data.cmd_dr_pos * ncMeasure.PointsList[j2].ax_data.pos_discr);
                     int k2 = i;
                     while (ncMeasure.PointsList[k2].ax_data.axIndex != 1)
                     {
                         k2++;
                         continue;
                     }
-                    currentCmdPoint.fieldY = (float)(ncMeasure.PointsList[k2].ax_data.axDrPos * ncMeasure.PointsList[k2].ax_data.pos_discr);
-                    
-                    //currentCmdPoint.fieldX = (float)(ncMeasure.PointsList[i].ax_data.cmd_dr_pos * ncMeasure.PointsList[i].ax_data.pos_discr);
-                    //currentCmdPoint.fieldY = (float)(ncMeasure.PointsList[i + 1].ax_data.cmd_dr_pos * ncMeasure.PointsList[i + 1].ax_data.pos_discr);
-                    //  currentCmdPoint.fieldZ = (float)(ncMeasure.PointsList[i + 2].ax_data.cmd_dr_pos * ncMeasure.PointsList[i + 2].ax_data.pos_discr);
+                    currentCmdPoint.fieldY = (float)(ncMeasure.PointsList[k2].ax_data.cmd_dr_pos * ncMeasure.PointsList[k2].ax_data.pos_discr);
                     list2.Add(currentCmdPoint);
                 }
             }
             listflag = true;
 
-            //foreach (var pli in ncMeasure.PointsList)
-            //{
-            //    var index = pli.ax_data.axIndex;
-            //    if (index >5)
-            //    {
-            //        var nextindex = index;
-            //    }
-            //    for(int i=0;i<
-            //      list.Add(
-            //            new myPoint3((float)(pli.ax_data.axDrPos /** pli.ax_data.pos_discr*/), (float)(pli.ax_data.axDrPos /** pli.ax_data.pos_discr*/), (float)(pli.ax_data.axDrPos/* * pli.ax_data.pos_discr*/))
-            //            );
-            //      list2.Add(
-            //             new myPoint3((float)(pli.ax_data.cmd_dr_pos /** pli.ax_data.pos_discr*/), (float)(pli.ax_data.cmd_dr_pos/* * pli.ax_data.pos_discr*/), (float)(pli.ax_data.cmd_dr_pos/* * pli.ax_data.pos_discr*/))
-            //             );
-            //      listflag = true;
-            //}
+
             if (list.Max(x => x.fieldX) >= list.Max(x => x.fieldY))
             {
                 mainProportion = list.Max(x => x.fieldX) + 10;
@@ -365,7 +366,7 @@ namespace WpfSharpGlNext.BL.Diagrammers
             else if (list.Max(x => x.fieldY >= x.fieldZ))
             {
                 mainProportion = list.Max(x => x.fieldY) + 10;
-                
+
             }
             else
             {
@@ -373,23 +374,8 @@ namespace WpfSharpGlNext.BL.Diagrammers
             }
             MessageBox.Show(list.Max(x => x.fieldX).ToString());
             MessageBox.Show(list2.Max(x => x.fieldX).ToString());
-            //int counter = 0;
-            //foreach (AbstractMeasureAxis ax in measure.axesList)
-            //{
-            //    foreach (AbstractMeasureSignal signal in ax.signalList)
-            //    {
-
-                    
-            //        //if (s != s2)
-            //        //{
-
-            //        //}
-
-            //        counter++;
-            //        //signal.VisibleSignalChanged += new EventHandler<EventArgs>(signal_VisibleSignalChanged);
-            //    }
-            //}
-
+            #endregion
+            #region 2
             //using (StreamReader sr = File.OpenText(patch))
             //{
             //    list.Clear();
@@ -420,8 +406,9 @@ namespace WpfSharpGlNext.BL.Diagrammers
             //    {
             //        mainProportion = list.Max(x => x.fieldZ) + 10;
             //    }
-              
+
             //}
+            #endregion
         }
     }
 }
